@@ -17,7 +17,6 @@ let tareas = JSON.parse(localStorage.getItem("tareas")) || []; //localstorage
 //Contenedor de tareas
 let contenedorTarjetas = document.getElementById('contenedor-tarjetas');
 
-ListarTareas();
 
 //FUNCIONES - crud
 
@@ -33,7 +32,7 @@ const agregarTarea = (event) =>{
     if (tarea.length > 5 ){
 
         //enviar el array - BD como un objeto
-        tareas.push(new Tarea( text , new Date().getTime()));
+        tareas.push(new Tarea(tareas.length + 1, tarea)); //cambie esto del archivo original //modificar en casa 
 
         //Enviar al localstorage
         localStorage.setItem("tareas", JSON.stringify(tareas));
@@ -84,7 +83,7 @@ const agregarTarea = (event) =>{
 //funcion marcar tarea
 const MarcarTarea = (id => {})
 
-ListarTareas();
+ ListarTareas();
  
 
 
