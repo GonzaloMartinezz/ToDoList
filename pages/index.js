@@ -50,6 +50,8 @@ const agregarTarea = (event) =>{
 
  //mostrar tarea -READ 
  const ListarTareas = () => {
+    //LIMPIAR EL CONTENEDOR DE TARJETAS 
+    contenedorTarjetas.innerHTML = "";
 
     //iterar el arreglo tareas 
     tareas.map((item) => {
@@ -61,8 +63,8 @@ const agregarTarea = (event) =>{
 
     let card = `<div class="card">
                     <div class="card-body d-flex justify-content-between align-items-center">
-                        <span class="text-decoration-line-through">${item.text}</span>
-                        <button class="btn btn-danger btn-sm" onclick=" EliminarTarea(${item.id})">X</button>
+                        <span class="${item.done ? "text-decoration-line-through" : ""}" onclick="MarcarTarea(${item.id})">${item.text}</span>
+                        <button class="btn btn-danger btn-sm" onclick="EliminarTarea(${item.id})">X</button>
                     </div>
                 </div>
                 `;
@@ -70,6 +72,13 @@ const agregarTarea = (event) =>{
         columna.innerHTML = card;
         contenedorTarjetas.appendChild(columna);    
     });
+//funcion traer los false 
+    let tareaspendientes = tareas.filter((item) => {
+        return item.done === false
+    })
+    //actualizar el contador de tareas
+    document.getElementById("tareas_pendientes").innerHTML = tareaspendientes.length;
+    document.getElementById("tareas_total").innerHTML = tareas.length;
  }
 
 
@@ -80,15 +89,29 @@ const agregarTarea = (event) =>{
  });
  //eliminar tarea 
  tareas.splice(index, 1);
+ //actualizo la BD
+ localStorage.setItem("tareas", JSON.stringify(tareas));
 
  //imprimir las tareas
  ListarTareas();
+
  }
+
 //funcion marcar tarea
-const MarcarTarea = (id => {})
+const MarcarTarea = (id => {
+let index = tareas.findIndex((item) => {
+    return item.id == id;
+});
 
+tareas[index].done = !tareas[index].done;
+//actualizo la BD
+localStorage.setItem("tareas", JSON.stringify(tareas));
 
+//Listar las tareas
  ListarTareas();
- 
+
+})
+
+ListarTareas();
 
 
