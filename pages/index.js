@@ -32,7 +32,10 @@ const agregarTarea = (event) =>{
     if (tarea.length > 5 ){
 
         //enviar el array - BD como un objeto
-       tareas.push(new Tarea tarea);
+       tareas.push(new Tarea (tarea));
+
+       //guardar el array en el localstorage
+       localStorage.setItem("tareas", JSON.stringify(tareas));
 
         //Enviar al localstorage
         localStorage.setItem("tareas", JSON.stringify(tareas));
@@ -69,6 +72,7 @@ const agregarTarea = (event) =>{
     });
  }
 
+
  //Funcion de eliminar tarea 
  const EliminarTarea = (id) => {
    let index = tareas.findIndex((item) =>{
@@ -82,6 +86,7 @@ const agregarTarea = (event) =>{
  }
 //funcion marcar tarea
 const MarcarTarea = (id => {})
+
 
  ListarTareas();
  
