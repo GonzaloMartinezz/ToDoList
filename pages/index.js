@@ -87,8 +87,10 @@ const agregarTarea = (event) =>{
    let index = tareas.findIndex((item) =>{
        return item.id == id;
  });
+
  //eliminar tarea 
  tareas.splice(index, 1);
+
  //actualizo la BD
  localStorage.setItem("tareas", JSON.stringify(tareas));
 
@@ -103,7 +105,7 @@ let index = tareas.findIndex((item) => {
     return item.id == id;
 });
 
-tareas[index].done = !tareas[index].done;
+ tareas[index].done = !tareas[index].done;
 //actualizo la BD
 localStorage.setItem("tareas", JSON.stringify(tareas));
 
