@@ -32,7 +32,7 @@ const agregarTarea = (event) =>{
     if (tarea.length > 5 ){
 
         //enviar el array - BD como un objeto
-       tareas.push(new Tarea (tarea));
+       tareas.push(new Tarea (id ,tarea));
 
        //guardar el array en el localstorage
        localStorage.setItem("tareas", JSON.stringify(tareas));
