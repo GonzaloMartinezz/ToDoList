@@ -23,7 +23,7 @@ let contenedorTarjetas = document.getElementById('contenedor-tarjetas');
 //CREAR
 const agregarTarea = (event) =>{
     //detener el submit
-    event.preventDefault();
+ /*    event.preventDefault(); */
 
     //capturar el valor del input del form 
     let tarea = document.querySelector("#textTarea").value;
@@ -32,7 +32,7 @@ const agregarTarea = (event) =>{
     if (tarea.length > 5 ){
 
         //enviar el array - BD como un objeto
-       tareas.push(new Tarea (id ,tarea));
+       tareas.push(new Tarea (tareas.length + 1, tarea));
 
        //guardar el array en el localstorage
        localStorage.setItem("tareas", JSON.stringify(tareas));
@@ -47,8 +47,8 @@ const agregarTarea = (event) =>{
         ListarTareas();
     }
 }
-
- //mostrar tarea -READ 
+ //mostrar tarea -READ //
+ 
  const ListarTareas = () => {
     //LIMPIAR EL CONTENEDOR DE TARJETAS 
     contenedorTarjetas.innerHTML = "";
